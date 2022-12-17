@@ -17,6 +17,8 @@
                                        class="card-img-top">
                     <div class="card-body">
                         <h2 class="card-title">{{ c.nom }}</h2>
+                        <a href="{{path("chaton_supprimer",{"id":c.id})}}" class="btn btn-danger">delete</a>
+                        <a href="{{path("chatons_modifier",{"id":c.id})}}" class="btn btn-warning">modifier</a>
                     </div>
                 </div>
             </div>

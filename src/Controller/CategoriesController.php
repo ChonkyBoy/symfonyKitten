@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Form\CategorieSupprimerType;
 use App\Form\CategorieType;
+use App\Form\ChatonSupprimerType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,10 +39,7 @@ class CategoriesController extends AbstractController
 
             //générer l'insert
             $em->flush();
-
         }
-
-
         //pour aller chercher les catégories, je vais utiliser un repository
         //pour me servir de doctrine j'ajoute le paramètres $doctrine à la méthode
         $repo = $doctrine->getRepository(Categorie::class);
@@ -136,5 +134,6 @@ class CategoriesController extends AbstractController
             'formulaire'=>$form->createView()
         ]);
     }
+
 
 }

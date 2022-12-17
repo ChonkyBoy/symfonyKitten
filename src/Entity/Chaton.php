@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ChatonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,16 @@ class Chaton
      * @ORM\JoinColumn(nullable=false)
      */
     private $Categorie;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Proprios::class, mappedBy="possedance")
+     */
+    private $proprios;
+
+    public function __construct()
+    {
+        $this->proprios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,6 +99,33 @@ class Chaton
     public function setCategorie(?Categorie $Categorie): self
     {
         $this->Categorie = $Categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Proprios>
+     */
+    public function getProprios(): Collection
+    {
+        return $this->proprios;
+    }
+
+    public function addProprio(Proprios $proprio): self
+    {
+        if (!$this->proprios->contains($proprio)) {
+            $this->proprios[] = $proprio;
+            $proprio->addPossedance($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProprio(Proprios $proprio): self
+    {
+        if ($this->proprios->removeElement($proprio)) {
+            $proprio->removePossedance($this);
+        }
 
         return $this;
     }

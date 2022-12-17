@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supress the chatons of the mignonnerie named {{ chaton.nom }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Are you sure you want to delete, I mean, scrape out the perfectly fine kitten out of my database?</h1>
+        {{ form(formulaire) }}
+        <a href="{{ path("app_home") }}" class="btn btn-warning">Annuler</a>
+    </div>
+{% endblock %}
+
